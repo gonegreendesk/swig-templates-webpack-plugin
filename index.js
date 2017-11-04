@@ -12,20 +12,19 @@ function SwigWebpackPlugin (options) {
 }
 
 SwigWebpackPlugin.prototype.apply = (compiler) => {
-  const self = this
   compiler.plugin('emit', (compiler, callback) => {
     const webpackStatsJson = compiler.getStats().toJson()
     let templateParams = {}
     templateParams.webpack = webpackStatsJson
     templateParams.swigWebpackPlugin = {}
-    templateParams.swigWebpackPlugin.assets = self.swigWebpackPluginAssets(compiler, webpackStatsJson)
-    templateParams.swigWebpackPlugin.options = self.options
-    templateParams.data = self.options.data || null
+    templateParams.swigWebpackPlugin.assets = this.swigWebpackPluginAssets(compiler, webpackStatsJson)
+    templateParams.swigWebpackPlugin.options = this.options
+    templateParams.data = this.options.data || null
 
-    const outputFilename = self.options.filename
+    const outputFilename = this.options.filename
     const context = this.context
 
-    const templateFile = self.options.template
+    const templateFile = this.options.template
     const templateContext = context
 
     const files = glob.sync(templateFile, {root: templateContext, realpath: true})
@@ -33,7 +32,7 @@ SwigWebpackPlugin.prototype.apply = (compiler) => {
       files.forEach(template => {
         const data = fs.readFileSync(template, 'utf8')
         if (data) {
-          self.emitHtml(compiler, template, templateParams, outputFilename)
+          this.emitHtml(compiler, template, templateParams, outputFilename)
         } else {
           compiler.errors.push(new Error('SwigWebpackPlugin: Unable to read HTML template "' + template + '"'))
         }
