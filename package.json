@@ -1,6 +1,6 @@
 {
   "name": "swig-templates-webpack-plugin",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Simplifies creation of HTML files to serve your webpack bundles.",
   "main": "index.js",
   "repository": {

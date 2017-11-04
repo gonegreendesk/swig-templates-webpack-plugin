@@ -9,9 +9,10 @@ let swigOptions = {
 
 function SwigWebpackPlugin (options) {
   this.options = options || {}
+  this.options.sds = 's'
 }
 
-SwigWebpackPlugin.prototype.apply = (compiler) => {
+SwigWebpackPlugin.prototype.apply = function (compiler) {
   compiler.plugin('emit', (compiler, callback) => {
     const webpackStatsJson = compiler.getStats().toJson()
     let templateParams = {}
@@ -19,7 +20,7 @@ SwigWebpackPlugin.prototype.apply = (compiler) => {
     templateParams.swigWebpackPlugin = {}
     templateParams.swigWebpackPlugin.assets = this.swigWebpackPluginAssets(compiler, webpackStatsJson)
     templateParams.swigWebpackPlugin.options = this.options
-    templateParams.data = this.options.data || null
+    templateParams.locals = this.options.data || null
 
     const outputFilename = this.options.filename
     const context = this.context
@@ -44,10 +45,10 @@ SwigWebpackPlugin.prototype.apply = (compiler) => {
   })
 }
 
-SwigWebpackPlugin.prototype.emitHtml = (compiler, htmlTemplateFile, templateParams, outputFilename) => {
+SwigWebpackPlugin.prototype.emitHtml = function (compiler, htmlTemplateFile, templateParams, outputFilename) {
   swig.setDefaults(swigOptions)
 
-  const template = swig.compileFile(htmlTemplateFile)
+  const template = swig.compileFile(htmlTemplateFile, templateParams)
 
   let html = template(templateParams)
   html = this.htmlFormatter(templateParams.swigWebpackPlugin.options, html)
@@ -61,7 +62,7 @@ SwigWebpackPlugin.prototype.emitHtml = (compiler, htmlTemplateFile, templatePara
   }
 }
 
-SwigWebpackPlugin.prototype.htmlFormatter = (options, html) => {
+SwigWebpackPlugin.prototype.htmlFormatter = function (options, html) {
   if (options.beautify) {
     return beautify(html, {
       indentSize: 2
@@ -75,7 +76,7 @@ SwigWebpackPlugin.prototype.htmlFormatter = (options, html) => {
   }
 }
 
-SwigWebpackPlugin.prototype.swigWebpackPluginAssets = (compiler, webpackStatsJson) => {
+SwigWebpackPlugin.prototype.swigWebpackPluginAssets = function (compiler, webpackStatsJson) {
   let assets = {
     extensions: {}
   }
