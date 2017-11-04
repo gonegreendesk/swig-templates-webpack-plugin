@@ -1,11 +1,11 @@
 {
-  "name": "swig-webpack-plugin",
-  "version": "0.5.1",
+  "name": "swig-templates-webpack-plugin",
+  "version": "0.6.0",
   "description": "Simplifies creation of HTML files to serve your webpack bundles.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaylinski/swig-webpack-plugin.git"
+    "url": "https://github.com/cybewombat/swig-templates-webpack-plugin.git"
   },
   "keywords": [
     "webpack",
@@ -18,18 +18,18 @@
   "author": "Jakob Linskeseder <jakob.linskeseder@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jaylinski/swig-webpack-plugin/issues"
+    "url": "https://github.com/cybewombat/swig-templates-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/jaylinski/swig-webpack-plugin",
+  "homepage": "https://github.com/cybewombat/swig-templates-webpack-plugin",
   "devDependencies": {
-    "jshint": "^2.8.0",
-    "rimraf": "^2.4.2",
-    "webpack": "^1.11.0"
+    "jshint": "^2.9.5",
+    "rimraf": "^2.6.2",
+    "webpack": "^3.8.1"
   },
   "dependencies": {
-    "glob": "^5.0.14",
-    "swig": "~1.4.2",
-    "html-minifier": "^0.7.2",
-    "js-beautify": "^1.5.10"
+    "glob": "^7.1.2",
+    "html-minifier": "^3.5.6",
+    "js-beautify": "^1.7.4",
+    "swig-templates": "^2.0.2"
   }
 }
