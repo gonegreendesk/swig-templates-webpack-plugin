@@ -2,7 +2,7 @@ const fs = require('fs')
 const glob = require('glob')
 const beautify = require('js-beautify').html
 const uglify = require('html-minifier')
-const swig = require('swig-template')
+const swig = require('swig-templates')
 let swigOptions = {
   cache: false
 }
