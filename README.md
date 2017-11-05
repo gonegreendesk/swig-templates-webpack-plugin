@@ -1,8 +1,5 @@
 # Swig Templates Webpack Plugin
 
-
-> **Note:** since [swig](https://github.com/paularmstrong/swig) isn't maintained anymore, this plugin will not receive any new features.
-
 > **Note:** forked from [swig-webpack-plugin](https://github.com/jaylinski/swig-webpack-plugin).
 
 This is a [webpack](http://webpack.github.io/) plugin that simplifies creation of HTML files to serve your
